@@ -3,18 +3,19 @@
   <a class="navbar-brand" href="#"><img src="../assets/images/logo.png"></a> 
   <button class="navbar-toggler" type="button" data-toggle="collapse"
     data-target="#navbarNavAltMarkup" aria-constrols="navbarNavAltMarkup" 
-    aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>  
+    aria-expanded="false" aria-label="Toggle navigation">  
   </button>
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">  
     <div class="navbar-nav">
-      <a class="nav-item nav-link active" routerLink="list-trips">
-        Trips<span class=" sr-only ">(current)</span>
+      <a class="nav-item nav-link active" routerLink="/list-trips"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page">
+        Trips
       </a>
     </div>
   </div> 
   <div class="navbar-end ">
-    <a class="navbar-item" router-Link="login" *ngIf="!isLoggedIn()">
+    <a class="navbar-item" routerLink="/login" *ngIf="!isLoggedIn()">
       <span class="has-icon-left">Log In</span>
     </a>
     <a class="navbar-item" (click)="onLogout()" *ngIf="isLoggedIn()">
@@ -22,3 +23,4 @@
     </a>
   </div>
 </nav> 
+<router-outlet></router-outlet>

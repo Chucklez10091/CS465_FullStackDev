@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Trip } from '../models/trip';
@@ -21,8 +21,18 @@ export class TripDataService {
     return this.http.get<Trip[]>(this.tripUrl);
   }
 
-  addTrip(formData: Trip) : Observable<Trip> {
-    return this.http.post<Trip>(this.tripUrl, formData);
+  // addTrip(formData: Trip) : Observable<Trip> {
+  //   return this.http.post<Trip>(this.tripUrl, formData);
+  // }
+  public addTrip(formData: Trip): Observable<Trip> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization' : `Bearer ${this.storage.getItem('travlr-token')}`
+      })
+    };
+
+    console.log(formData);
+    return this.http.post<Trip>(this.tripUrl, formData, httpOptions);
   }
 
   getTrip(tripCode: string) : Observable<Trip> {
@@ -30,8 +40,13 @@ export class TripDataService {
     return this.http.get<Trip>(this.tripUrl + '/' + tripCode);
   }
 
-  updateTrip(formData: Trip) : Observable<Trip> {
-    return this.http.put<Trip>(this.tripUrl + '/' + formData.code, formData);
+  public updateTrip(formData: Trip) : Observable<Trip> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization' : `Bearer ${this.storage.getItem('travlr-token')}`
+      })
+    };
+    return this.http.put<Trip>(this.tripUrl + '/' + formData.code, formData, httpOptions);
   }
 
   private handleError(error: any): Promise<any> {

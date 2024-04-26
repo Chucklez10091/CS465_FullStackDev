@@ -7,7 +7,7 @@ const User = mongoose.model('users');
 // Regardless of outcome, response must include HTML status code
 // and JSON message to the requesting client
 const tripsList = async(req, res) => {
-    Trip
+    const q = await Trip
         .find({}) //No filter, return all records
         .exec();
 

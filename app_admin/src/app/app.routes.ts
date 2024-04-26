@@ -5,7 +5,6 @@ import { EditTripComponent } from './edit-trip/edit-trip.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
     { path: 'add-trip', component: AddTripComponent },
